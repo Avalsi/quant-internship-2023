@@ -18,4 +18,6 @@ jobs:
       - name: Test with the Go CLI with mocked data
         run: go test -v ./gifs/tests_using_custom_mocks/
       - name: Mock tests with the Go CLI using library
-        run: go test -v ./gifs/mock_tests_using_library/
+        run: go test -v ./gifs/mock_tests_using_library/  
+      - name: Benchmark tests with the Go CLI 
+        run: go test -v ./gifs/benchmark_tests/
