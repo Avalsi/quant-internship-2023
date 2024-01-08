@@ -23,3 +23,5 @@ jobs:
         run: go test -v ./gifs/mock_tests_using_library/  
       - name: Benchmark tests with the Go CLI 
         run: go test -v ./gifs/benchmark_tests
+      - name: Integration tests with the Go CLI 
+        run: go test -v ./gifs/integration_tests
