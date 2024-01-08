@@ -22,4 +22,4 @@ jobs:
       - name: Mock tests with the Go CLI using library
         run: go test -v ./gifs/mock_tests_using_library/  
       - name: Benchmark tests with the Go CLI 
-        run: go test -v ./gifs/in
+        run: go test -v ./gifs/benchmark_tests
