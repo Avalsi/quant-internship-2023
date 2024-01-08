@@ -11,6 +11,8 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.21.4'
+      - name: mongo-action
+        uses: DigiPie/mongo-action@v2.0.1
       - name: Install dependencies
         run: go get .
       - name: Build
@@ -20,4 +22,4 @@ jobs:
       - name: Mock tests with the Go CLI using library
         run: go test -v ./gifs/mock_tests_using_library/  
       - name: Benchmark tests with the Go CLI 
-        run: go test -v ./gifs/benchmark_tests/
+        run: go test -v ./gifs/in
