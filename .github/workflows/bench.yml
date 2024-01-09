@@ -1,0 +1,44 @@
+# This workflow will buname: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.21.4
+      - name: mongo-action
+        uses: DigiPie/mongo-action@v2.0.1
+      - name: Build and Test
+        run: go test -v ./...
+  publishBenchRes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.21.4
+      - name: mongo-action
+        uses: DigiPie/mongo-action@v2.0.1
+      - name: gobenchdata publish
+        run: go run go.bobheadxi.dev/gobenchdata@v1 action
+        env:
+          GITHUB_TOKEN: ${{ secrets.NOT_GITHUB_PERSONAL_ACCESS_TOKEN }}
+          INPUT_PRUNE_COUNT: 0
+          INPUT_PUBLISH: true
+          INPUT_PUBLISH_BRANCH: gh-pages
+      - name: Store benchmark result
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: 'go'
+          output-file-path: output.txt
